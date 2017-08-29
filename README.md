@@ -114,8 +114,8 @@ Connected with `ssh grader@207.154.216.68 -p 2200 ~/linux-project`:
   
 **Configure new virtual host:**
  - `sudo nano /etc/apache2/sites-available/App.conf`
-
-    `<VirtualHost *:80>
+ ```
+    <VirtualHost *:80>
 	ServerName 207.154.216.68
 	ServerAdmin mikhailsergeevi4@yandex.ru
 	WSGIScriptAlias / /var/www/App/app.wsgi
@@ -131,22 +131,22 @@ Connected with `ssh grader@207.154.216.68 -p 2200 ~/linux-project`:
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	LogLevel warn
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
-	</VirtualHost>`
-
+	</VirtualHost>
+```
  - `sudo a2ensite App`
 
 **WSGI file:**
  - `cd /var/www/App`
  - `sudo nano app.wsgi`
 
-   `#!/usr/bin/python
+   ```#!/usr/bin/python
     import sys
     import logging
     logging.basicConfig(stream=sys.stderr)
     sys.path.append("/var/www/App/")
 
     from App import app as application
-    application.secret_key = 'super_secret_key'
+    application.secret_key = 'super_secret_key'```
 
  - `sudo service apache2 reload`
 
